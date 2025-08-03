@@ -1,35 +1,32 @@
 // src/app/tickets/page.js
 'use client';
 import TicketCard from "../components/TicketCard";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
 export default function TicketsPage() {
   const router = useRouter();
   const [filter, setFilter] = useState('all');
-  
-  const tickets = [
-    { 
-      id: 1, 
-      title: "Connexion impossible au VPN", 
-      status: "Ouvert",
-      priority: "Haute",
-      date: "2023-06-15",
-      category: "Réseau"
-    },
-    { 
-      id: 2, 
-      title: "Erreur d'affichage sur le tableau de bord", 
-      status: "En cours",
-      priority: "Moyenne",
-      date: "2023-06-14",
-      category: "Interface"
-    }
-  ];
+  const [tickets, setTickets] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const filteredTickets = filter === 'all' 
-    ? tickets 
-    : tickets.filter(ticket => ticket.status.toLowerCase().includes(filter.toLowerCase()));
+  // Fetch tickets from backend
+  useEffect(() => {
+    fetch('http://localhost:8082/api/tickets')
+      .then(res => res.json())
+      .then(data => {
+        setTickets(data);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, []);
+
+  // Filtering logic (status is optional in your backend, so handle missing status)
+  const filteredTickets = filter === 'all'
+    ? tickets
+    : tickets.filter(ticket =>
+        (ticket.status || '').toLowerCase().includes(filter.toLowerCase())
+      );
 
   return (
     <div className="container-fluid bg-purple min-vh-100" style={{ backgroundColor: '#6a0dad', padding: '2rem 0' }}>
@@ -81,15 +78,19 @@ export default function TicketsPage() {
 
               {/* Liste des tickets */}
               <div className="list-group">
-                {filteredTickets.length > 0 ? (
+                {loading ? (
+                  <div className="alert alert-info text-center">
+                    Chargement des tickets...
+                  </div>
+                ) : filteredTickets.length > 0 ? (
                   filteredTickets.map(ticket => (
                     <TicketCard 
                       key={ticket.id}
                       id={ticket.id}
                       title={ticket.title}
-                      status={ticket.status}
+                      status={ticket.status || "N/A"}
                       priority={ticket.priority}
-                      date={ticket.date}
+                      date={ticket.date || ""}
                       category={ticket.category}
                       onClick={() => router.push(`/tickets/${ticket.id}`)}
                     />

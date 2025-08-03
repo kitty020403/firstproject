@@ -20,15 +20,33 @@ const TicketForm = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulation d'envoi
-    setTimeout(() => {
-      console.log('Ticket soumis:', formData);
+
+    try {
+      const response = await fetch('http://localhost:8082/api/tickets', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Erreur lors de la création du ticket');
+      }
+
+      setFormData({
+        title: '',
+        description: '',
+        priority: 'medium',
+        category: 'technical'
+      });
       router.push('/tickets/confirmation');
-    }, 1500);
+    } catch (error) {
+      alert(error.message);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
