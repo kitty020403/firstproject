@@ -1,4 +1,3 @@
-// app/forgotpassword/page.js
 'use client';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
@@ -7,11 +6,19 @@ export default function ForgotPassword() {
   const router = useRouter();
   
   return (
-    <div className="container-fluid bg-purple min-vh-100 d-flex align-items-center justify-content-center" 
-         style={{ backgroundColor: '#6a0dad', padding: '2rem' }}>
-      <div className="card shadow-lg border-0" style={{ width: '100%', maxWidth: '500px' }}>
-        <div className="card-header bg-primary text-white">
-          <h2 className="mb-0 text-center">
+    <div className="min-vh-100 d-flex align-items-center justify-content-center" 
+         style={{ 
+           background: 'linear-gradient(135deg, #000000 0%, #1a1a2e 50%, #39395e 100%)',
+           padding: '2rem' 
+         }}>
+      <div className="card shadow-lg border-0" style={{ 
+        width: '100%', 
+        maxWidth: '500px',
+        backdropFilter: 'blur(8px)',
+        backgroundColor: 'rgba(255, 255, 255, 1)'
+      }}>
+        <div className="card-header border-0 bg-transparent pt-4">
+          <h2 className="mb-0 text-center fw-bold" style={{ color: '#39395e' }}>
             <i className="fas fa-key me-2"></i>
             Mot de passe oublié
           </h2>
@@ -24,17 +31,24 @@ export default function ForgotPassword() {
 
           <form>
             <div className="mb-4">
-              <label htmlFor="email" className="form-label fw-bold text-muted">Email</label>
+              <label htmlFor="email" className="form-label fw-bold" style={{ color: '#39395e' }}>Email</label>
               <div className="input-group">
-                <span className="input-group-text bg-light">
-                  <i className="fas fa-envelope text-muted"></i>
+                <span className="input-group-text" style={{ 
+                  backgroundColor: 'rgba(239, 145, 195, 0.2)',
+                  borderColor: 'rgba(239, 145, 195, 0.3)'
+                }}>
+                  <i className="fas fa-envelope" style={{ color: '#39395e' }}></i>
                 </span>
                 <input
                   type="email"
                   className="form-control form-control-lg"
                   id="email"
                   required
-                  placeholder="votre@email.com"
+                  placeholder="example@email.com"
+                  style={{
+                    borderColor: 'rgba(239, 145, 195, 0.3)',
+                    backgroundColor: 'rgba(255, 255, 255, 0.8)'
+                  }}
                 />
               </div>
             </div>
@@ -42,11 +56,12 @@ export default function ForgotPassword() {
             <div className="d-grid mt-5">
               <button
                 type="submit"
-                className="btn btn-primary btn-lg fw-bold py-3"
+                className="btn btn-lg fw-bold py-3 border-0"
                 style={{
-                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                  border: 'none',
-                  transition: 'all 0.3s'
+                  background: 'linear-gradient(135deg, #000000 0%, #1a1a2e 50%, #39395e 100%)',
+                  color: 'white',
+                  transition: 'all 0.3s',
+                  boxShadow: '0 4px 15px rgba(185, 87, 151, 0.3)'
                 }}
                 onMouseOver={(e) => e.target.style.opacity = '0.9'}
                 onMouseOut={(e) => e.target.style.opacity = '1'}
@@ -61,7 +76,12 @@ export default function ForgotPassword() {
             <Link 
               href="/login" 
               className="text-decoration-none fw-bold"
-              style={{ color: '#764ba2' }}
+              style={{ 
+                color: '#1a1a2e ',
+                transition: 'all 0.3s'
+              }}
+              onMouseOver={(e) => e.currentTarget.style.color = '#1a1a2e '}
+              onMouseOut={(e) => e.currentTarget.style.color = '#1a1a2e '}
             >
               <i className="fas fa-arrow-left me-2"></i>
               Retour à la connexion

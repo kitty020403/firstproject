@@ -3,36 +3,39 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 export default function SignInPage() {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setError('');
     setIsLoading(true);
 
-    if (!email || !password) {
+    if (!username || !password) {
       setError('Please fill in all fields');
       setIsLoading(false);
       return;
     }
-
-    try {
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      console.log('Login successful for:', email);
-      router.push('/dashboard');
-    } catch (err) {
-      setError('Invalid credentials. Please try again.');
-      setIsLoading(false);
+ else if (username === 'admin' && password === 'admin') {
+      // Redirect to admin page after 1.5 seconds
+      setTimeout(() => {
+        router.push('/admin');
+      }, 1500);
+    } else {
+      // Redirect to user page for all other cases
+      setTimeout(() => {
+        router.push('/user');
+      }, 1500);
     }
+    
   };
 
   return (
     <div className="container-fluid bg-gradient-primary" style={{ 
-      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      background: 'linear-gradient(135deg, #000000 0%, #1a1a2e 50%, #39395e 100%)',
       minHeight: '100vh'
     }}>
       <div className="row justify-content-center align-items-center min-vh-100">
@@ -40,7 +43,7 @@ export default function SignInPage() {
           <div className="card shadow-lg o-hidden border-0">
             <div className="card-body p-5">
               <div className="text-center mb-4">
-                <h2 className="fw-bold text-primary">Welcome Back</h2>
+                <h2 className="fw-bold" style={{ color: '#39395e ' }}>Welcome Back</h2>
                 <p className="text-muted">Sign in to your account</p>
               </div>
 
@@ -53,18 +56,18 @@ export default function SignInPage() {
 
               <form onSubmit={handleSubmit}>
                 <div className="mb-4">
-                  <label htmlFor="email" className="form-label fw-medium">Email Address</label>
+                  <label htmlFor="username" className="form-label fw-medium">Username</label>
                   <div className="input-group">
                     <span className="input-group-text bg-light">
-                      <i className="fas fa-envelope text-muted"></i>
+                      <i className="fas fa-user text-muted"></i>
                     </span>
                     <input
-                      type="email"
+                      type="text"
                       className="form-control form-control-lg"
-                      id="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="your@email.com"
+                      id="username"
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
+                      placeholder="Your username"
                       required
                     />
                   </div>
@@ -95,7 +98,7 @@ export default function SignInPage() {
                       Remember me
                     </label>
                   </div>
-                  <a href="/forgotpassword" className="text-sm hover:underline" style={{ color: '#764ba2' }}>
+                  <a href="/forgotpassword" className="text-sm hover:underline" style={{ color: '#39395e ' }}>
                     Forgot password?
                   </a>
                 </div>
@@ -105,9 +108,10 @@ export default function SignInPage() {
                     type="submit" 
                     className="btn btn-primary btn-lg fw-bold py-3"
                     style={{
-                      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                      background: 'linear-gradient(135deg, #000000 0%, #1a1a2e 50%, #39395e 100%)',
                       border: 'none',
-                      transition: 'all 0.3s'
+                      transition: 'all 0.3s',
+                      boxShadow: '0 4px 15px rgba(185, 87, 151, 0.3)'
                     }}
                     onMouseOver={(e) => e.target.style.opacity = '0.9'}
                     onMouseOut={(e) => e.target.style.opacity = '1'}
@@ -131,7 +135,7 @@ export default function SignInPage() {
                   <a 
                     href="/signup" 
                     className="text-decoration-none fw-bold"
-                    style={{ color: '#764ba2' }}
+                    style={{ color: '#39395e ' }}
                   >
                     Sign up
                   </a>

@@ -55,7 +55,7 @@ const TicketListPage = () => {
 
   return (
     <div className="min-vh-100" style={{ 
-      background: 'linear-gradient(135deg, #000000 0%, #1a1a2e 50%, #39395e 100%)',
+      background: 'linear-gradient(135deg, #fdfdfdff 0%, #ef91c3ff 100%)',
       padding: '2rem 0'
     }}>
       <div className="container">
@@ -66,7 +66,7 @@ const TicketListPage = () => {
               backgroundColor: 'rgba(255, 255, 255, 0.85)'
             }}>
               <div className="card-header border-0 bg-transparent pt-4">
-                <h2 className="mb-0 text-center fw-bold" style={{ color: '#39395e ' }}>
+                <h2 className="mb-0 text-center fw-bold" style={{ color: '#b95797ff' }}>
                   <i className="fas fa-ticket-alt me-2"></i>
                   Mes Tickets d'Assistance
                 </h2>
@@ -76,7 +76,7 @@ const TicketListPage = () => {
                 <div className="table-responsive">
                   <table className="table table-hover align-middle">
                     <thead>
-                      <tr style={{ color: '#39395e ' }}>
+                      <tr style={{ color: '#b95797ff' }}>
                         <th>ID</th>
                         <th>Titre</th>
                         <th>Priorité</th>
@@ -113,9 +113,9 @@ const TicketListPage = () => {
                             <button 
                               className="btn btn-sm"
                               style={{
-                                background: 'rgba(118, 75, 162, 0.3)',
-                                border: '1px solid rgba(118, 75, 162, 0.3)',
-                                color: '#39395e ',
+                                background: 'rgba(185, 87, 151, 0.1)',
+                                border: '1px solid rgba(185, 87, 151, 0.3)',
+                                color: '#b95797ff',
                                 transition: 'all 0.3s'
                               }}
                               onClick={() => router.push(`/tickets/${ticket.id}`)}
@@ -136,7 +136,7 @@ const TicketListPage = () => {
                   <button 
                     className="btn btn-lg fw-bold py-3 border-0"
                     style={{
-                      background: 'linear-gradient(135deg, #000000 0%, #1a1a2e 50%, #39395e 100%)',
+                      background: 'linear-gradient(135deg, #b95797ff 0%, #ef91c3ff 100%)',
                       color: 'white',
                       transition: 'all 0.3s',
                       boxShadow: '0 4px 15px rgba(185, 87, 151, 0.3)'

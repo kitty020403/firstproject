@@ -4,22 +4,13 @@ import { useEffect } from 'react';
 export default function HomePage() {
   const router = useRouter();
  
-  useEffect(() => {
-    fetch('http://localhost:8082/api/hello')
-      .then(res => res.text())
-      .then(data => console.log(data)); // Should log "Hello from Spring Boot!"
-  }, []);
-
+ 
   // Sidebar links
   const sidebarLinks = [
     { section: "Dashboard", items: [
       { title: "Default", icon: "fas fa-tachometer-alt", href: "/" }
     ]},
-    /*{ section: "Elements", items: [
-      { title: "Typographie", icon: "fas fa-font", href: "#" },
-      { title: "Couleur", icon: "fas fa-palette", href: "#" },
-      { title: "Icônes", icon: "fas fa-icons", href: "#" }
-    ]},*/
+  
     { section: "Pages", items: [
       { title: "Connexion", icon: "fas fa-sign-in-alt", href: "/login" },
       { title: "Inscription", icon: "fas fa-user-plus", href: "/signup" },

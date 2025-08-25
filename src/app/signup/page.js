@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Envelope, Person, Lock } from 'react-bootstrap-icons';
+import TestTailwind from '../components/TestTailwind';
 
 export default function SignupPage() {
   const [formData, setFormData] = useState({
@@ -19,13 +20,13 @@ export default function SignupPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Ajoute ta logique ici
+   
     alert('Signup form submitted!');
   };
 
   return (
     <div className="container-fluid bg-gradient-primary" style={{ 
-      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      background: 'linear-gradient(135deg, #000000 0%, #1a1a2e 50%, #39395e 100%)',
       minHeight: '100vh'
     }}>
       <div className="row justify-content-center align-items-center min-vh-100">
@@ -33,7 +34,7 @@ export default function SignupPage() {
           <div className="card shadow-lg o-hidden border-0">
             <div className="card-body p-5">
               <div className="text-center mb-4">
-                <h2 className="fw-bold text-primary">Create Your Account</h2>
+                <h2 className="fw-bold" style={{ color: '#39395e' }}>Create Your Account</h2>
                 <p className="text-muted">Fill in your details to get started</p>
               </div>
 
@@ -98,9 +99,10 @@ export default function SignupPage() {
                     type="submit" 
                     className="btn btn-primary btn-lg fw-bold py-3"
                     style={{
-                      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                      background: 'linear-gradient(135deg, #000000 0%, #1a1a2e 50%, #39395e 100%)',
                       border: 'none',
-                      transition: 'all 0.3s'
+                      transition: 'all 0.3s',
+                      boxShadow: '0 4px 15px rgba(185, 87, 151, 0.3)'
                     }}
                     onMouseOver={(e) => e.target.style.opacity = '0.9'}
                     onMouseOut={(e) => e.target.style.opacity = '1'}
@@ -115,7 +117,7 @@ export default function SignupPage() {
                     <a 
                       href="/login" 
                       className="text-decoration-none fw-bold"
-                      style={{ color: '#764ba2' }}
+                      style={{ color: '#1a1a2e ' }}
                     >
                       Log in
                     </a>
